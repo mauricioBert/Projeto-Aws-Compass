@@ -55,9 +55,6 @@ No tipo da instância, utilize **t2.micro**, ideal para testes e disponível no 
 
 Adicione as **tags necessárias** para organizar e identificar a instância de forma eficiente.
 
-![image](https://github.com/user-attachments/assets/788364f3-58fc-464e-8deb-b2592aafb57a)
-
-
 ### Passo 1: Criar as Chaves de Acesso
 1. No console da AWS, ao criar uma instância EC2, selecione a opção para **criar uma nova chave**.
 2. Nomeie a chave e faça o **download do arquivo .pem**.
@@ -70,11 +67,13 @@ Adicione as **tags necessárias** para organizar e identificar a instância de f
 ### Passo 3: Associar o Security Group
 1. Na seção de **Segurança (Security)**, selecione o **Security Group** que você criou para a sua instância EC2.
 
-![image](https://github.com/user-attachments/assets/df6c8d33-899e-4b23-b8c9-0d919fb6dcba)
+![image](https://github.com/user-attachments/assets/788364f3-58fc-464e-8deb-b2592aafb57a)
 
 ### Passo 4: Criar e Lançar a Instância EC2
 1. Após configurar as opções anteriores, clique em **Launch Instance** para criar sua instância EC2.
 2. A instância será criada com as configurações definidas, incluindo VPC, Security Group e chave de acesso.
+
+![image](https://github.com/user-attachments/assets/df6c8d33-899e-4b23-b8c9-0d919fb6dcba)
 
 Agora, sua instância EC2 está configurada e pronta para ser acessada.
 
@@ -96,32 +95,22 @@ Para acessar a sua instância EC2 da AWS via SSH, siga os passos abaixo:
 
 ## Subir o servidor Nginx na EC2
 
-1. Acesse sua instância EC2 via SSH:
-    ```bash
-    ssh -i projetoaws1.pem ec2-user@44.200.205.195
-    ```
-
-2. Atualize os pacotes da sua instância EC2:
+1. Atualize os pacotes da sua instância EC2:
     ```bash
     sudo yum update -y
     ```
 
-3. Instale o Nginx:
+2. Instale o Nginx:
     ```bash
     sudo amazon-linux-extras install nginx1.12 -y
     ```
 
-4. Inicie o serviço do Nginx:
+3. Inicie o serviço do Nginx:
     ```bash
     sudo systemctl start nginx
     ```
 
-5. Habilite o Nginx para iniciar automaticamente após reiniciar a instância:
-    ```bash
-    sudo systemctl enable nginx
-    ```
-
-6. Verifique se o Nginx está em execução:
+4. Verifique se o Nginx está em execução:
     ```bash
     sudo systemctl status nginx
     ```
@@ -234,7 +223,7 @@ Crie um script Bash para verificar se o servidor está respondendo corretamente 
     # URL do site para monitoramento
     URL="http://localhost"
     # Webhook do Discord
-    WEBHOOK_URL="https://discord.com/api/webhooks/1353792510388076704/1K4M0rzr-SncGg4g6G9f3_Qi1O1lg0DI3KgQU4pM02X9dDs6woVO9ggNKtBsSS25-H6L"
+    WEBHOOK_URL= "URL DO WEBHOOK"
     # Arquivo de log
     LOG_FILE="/var/log/monitoramento.log"
 
@@ -298,6 +287,14 @@ Se o comando `curl` no script estiver sendo executado corretamente, ele deve reg
 ```bash
 sudo cat /var/log/meu_script.log
  ```
+```bash
+sudo cat /var/log/monitoramento.log
+ ```
+
 ### Passo 4: Confirmar no Discord
 
+Use o seguinte comando para desativar o Nginx e testar o webhook:
+```bash
+sudo systemctl stop nginx
+ ```
 Verifique seu canal no Discord onde o webhook está configurado. Se o webhook estiver funcionando, a mensagem de alerta será postada nesse canal sempre que o site estiver fora do ar.
