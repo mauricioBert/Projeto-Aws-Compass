@@ -275,9 +275,9 @@ Para garantir que o script seja executado automaticamente a cada minuto, use o c
 
 Isso configura o cron para executar o script de monitoramento a cada 1 minuto.
 
-# ETAPA 4: Teste de Monitoramento e Webhook
+## ETAPA 4: Teste de Monitoramento e Webhook
 
-## Passo 1: Verificar a Resposta do Webhook no Script
+### Passo 1: Verificar a Resposta do Webhook no Script
 
 Primeiro, no seu script, você deve estar enviando a solicitação para o Discord da seguinte forma:
 
@@ -289,7 +289,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"content": "O site está f
 Uma maneira fácil de testar se o webhook está funcionando é executando manualmente o comando `curl` que dispara o webhook. Você pode rodar isso diretamente no terminal:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"content": "O site está fora do ar!"}' https://discord.com/api/webhooks/1353792510388076704/1K4M0rzr-SncGg4g6G9f3_Qi1O1lg0DI3KgQU4pM02X9dDs6woVO9ggNKtBsSS25-H6L
+curl -X POST -H "Content-Type: application/json" -d '{"content": "O site está fora do ar!"}' "URL DO WEBHOOK"
  ```
 ### Passo 3: Verificar os logs
 
@@ -297,9 +297,7 @@ Se o comando `curl` no script estiver sendo executado corretamente, ele deve reg
 
 ```bash
 sudo cat /var/log/meu_script.log
-
+ ```
 ### Passo 4: Confirmar no Discord
 
 Verifique seu canal no Discord onde o webhook está configurado. Se o webhook estiver funcionando, a mensagem de alerta será postada nesse canal sempre que o site estiver fora do ar.
-
-Se não funcionar, me avise e posso ajudar a ajustar o script ou investigar possíveis problemas no webhook.
